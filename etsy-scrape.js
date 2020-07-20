@@ -8,6 +8,10 @@ async function scrapeProduct(url) {
   const page = await browser.newPage();
   await page.goto(url);
   
+
+
+
+  
   const[el] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[1]/div/div[1]/div/div/div/img')
   const src = await el.getProperty('src');
   const imgURL = await src.jsonValue();

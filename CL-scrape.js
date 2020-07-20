@@ -19,12 +19,12 @@ const textsArray = await page.evaluate(
 const titlesArray = await page.evaluate(
   () => [...document.querySelectorAll('.result-title')].map(elem => elem.innerText)
 );
-// const textsJoined = await page.evaluate(
-//   () => [...document.querySelectorAll('ul')].map(elem => elem.innerText).join('\n')
-// );
-console.log(textsArray)
-console.log(titlesArray)
-// console.log(textsJoined)
+const textsJoined = await page.evaluate(
+  () => [...document.querySelectorAll('ul')].map(elem => elem.innerText).join('\n')
+);
+
+console.log("---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------CRAIGS LIST TITLE DUMP--------------- \n ---------------------------------- \n" + textsJoined)
+console.log(textsJoined)
 
 
 
