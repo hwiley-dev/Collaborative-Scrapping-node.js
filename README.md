@@ -33,5 +33,14 @@ Check out the console!
 
 
 
-## TO DOs
 
+## Contributing
+-- Submit pull requests of some of your interesting scrapes!
+
+
+
+
+## TO DOs
+[] Frontend React App
+[] Data in JSON
+[] 

@@ -7,16 +7,18 @@ async function scrapeProduct(url) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
-
-  const[el] = await page.$x('//*[@id="landingImage"]')
+  
+  const[el] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[1]/div/div[1]/div/div/div/img')
   const src = await el.getProperty('src');
   const imgURL = await src.jsonValue();
 
-  const[el2] = await page.$x('//*[@id="productTitle"]')
+
+  // Title returns n/a for some reason ...
+  const[el2] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[2]/div/h3')
   const txt = await el2.getProperty('textContent');
   const title = await txt.jsonValue();
 
-  const[el3] = await page.$x('//*[@id="price_inside_buybox"]')
+  const[el3] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[2]/div/span/span[2]')
   const txt2 = await el3.getProperty('textContent');
   const price = await txt2.jsonValue();
 
@@ -28,4 +30,4 @@ async function scrapeProduct(url) {
 
 }
 
-scrapeProduct('https://www.amazon.com/TravelSource-2-Person-Stainless-Steel-Utensils-Chopsticks/dp/B01LX29R5C/ref=pd_ybh_a_1?_encoding=UTF8&psc=1&refRID=12D45JZJV8SQ591065EP')
+scrapeProduct('https://www.etsy.com/search?q=visual+art')
