@@ -4,7 +4,7 @@
   "description": "",
   "main": "scrape.js",
   "scripts": {
-    "start": "concurrently \"node CL-scrape.js\" \"node amazon-scrape.js\""
+    "start": "concurrently \"node CL-scrape.js\" \"node etsy-scrape.js\""
   },
   "keywords": [],
   "author": "",
