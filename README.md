@@ -20,10 +20,14 @@ npm install puppeteer
 
 #### To run
 
-Run concurrently with a single node cmd:
+install nodemon hot reload
 
- npm start
- 
+npm i nodemon
+
+Then start with
+
+nodemon
+
  *!Try it!*
 
 
@@ -33,10 +37,31 @@ Check out the console!
 
 
 
-
 ## Contributing
--- Submit pull requests of some of your interesting scrapes!
+-- Submit pull requests of some of your interesting scrapes
 
+
+
+
+
+## Scrape for Bluegrass, Americana & Folk
+
+
+
+
+[] Org
+[] Email 	
+[] Website
+[] Product / Service 	
+[] Phone	
+[] Region
+[] IG URL
+[] FB URL
+[]
+
+
+
+Convert JSON to CSV file for excel.
 
 
 
@@ -44,3 +69,4 @@ Check out the console!
 [] Frontend React App
 [] Data in JSON
 [] 
+

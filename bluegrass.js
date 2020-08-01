@@ -12,9 +12,9 @@ async function scrapeProduct(url) {
 
 
   
-  const[el] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[1]/div/div[1]/div/div/div/img')
-  const src = await el.getProperty('src');
-  const imgURL = await src.jsonValue();
+  const[el] = await page.$x('//*[@id="rso"]/div[1]/div/div[1]/a')
+  const href = await el.getProperty('href');
+  const imgURL = await href.jsonValue();
 
 
   // Title returns n/a for some reason ...
@@ -39,4 +39,4 @@ async function scrapeProduct(url) {
 
 }
 
-scrapeProduct('https://www.etsy.com/search?q=visual+art')
+scrapeProduct('https://www.google.com/search?q=(+bluegrass+OR+americana+OR+folk)+sponsors&oq=(+bluegrass+OR+americana+OR+folk)+sponsors&aqs=chrome..69i57j33.2225j0j7&sourceid=chrome&ie=UTF-8')
