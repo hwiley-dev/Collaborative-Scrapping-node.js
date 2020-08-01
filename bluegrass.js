@@ -1,42 +1,41 @@
+/*  |*!*!*!*!*!*!*!*| BLUEGRASS |*!*!*!*!*!*!*!*|
+    |*!*!*!*!*!*!*!*| BLUEGRASS |*!*!*!*!*!*!*!*|
+*/
+
+
+'use strict';
+
 const puppeteer = require('puppeteer');
 
+(async function main() {
+  try {
+    const browser = await puppeteer.launch();
+    const [page] = await browser.pages();
 
-// Write an async function -- 
-//    a fn where compiler waits for certain values before moving forward. Yeah, it's weird. Explore JS asynchronous wiki rabbit hole sometime :)
-async function scrapeProduct(url) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url);
-  
+    await page.goto('https://www.google.com/search?q=intitle%3Abluegrass+intext%3A+sponsors&oq=intitle%3Abluegrass+intext%3A+sponsors&aqs=chrome..69i57j69i58.14144j0j7&sourceid=chrome&ie=UTF-8');
 
+    // way 1
+    const hrefs1 = await page.evaluate(
+      () => Array.from(
+        document.querySelectorAll('a[href]'),
+        a => a.getAttribute('href')
+      )
+    );
 
+    // way 2
+    const elementHandles = await page.$$('a');
+    const propertyJsHandles = await Promise.all(
+      elementHandles.map(handle => handle.getProperty('href'))
+    );
+    const hrefs2 = await Promise.all(
+      propertyJsHandles.map(handle => handle.jsonValue())
+    );
 
-  
-  const[el] = await page.$x('//*[@id="rso"]/div[1]/div/div[1]/a')
-  const href = await el.getProperty('href');
-  const imgURL = await href.jsonValue();
+    console.log(hrefs1, hrefs2);
 
+    await browser.close();
+  } catch (err) {
+    console.error(err);
+  }
+})();
 
-  // Title returns n/a for some reason ...
-  const[el2] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[2]/div/h3')
-  const txt = await el2.getProperty('textContent');
-  const title = await txt.jsonValue();
-
-  const[el3] = await page.$x('//*[@id="content"]/div/div[1]/div/div/div[3]/div[2]/div[2]/div/div/ul/li[1]/div/a/div[2]/div/span/span[2]')
-  const txt2 = await el3.getProperty('textContent');
-  const price = await txt2.jsonValue();
-
-  console.log({ imgURL, title, price })
-
-
-
-
-
-  
-  browser.close();
-
-  
-
-}
-
-scrapeProduct('https://www.google.com/search?q=(+bluegrass+OR+americana+OR+folk)+sponsors&oq=(+bluegrass+OR+americana+OR+folk)+sponsors&aqs=chrome..69i57j33.2225j0j7&sourceid=chrome&ie=UTF-8')

@@ -23,8 +23,8 @@ const textsJoined = await page.evaluate(
   () => [...document.querySelectorAll('ul')].map(elem => elem.innerText).join('\n')
 );
 
-console.log("---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------CRAIGS LIST TITLE DUMP--------------- \n ---------------------------------- \n" + textsJoined)
-console.log(textsJoined)
+// console.log("---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------------------------------- \n ---------CRAIGS LIST TITLE DUMP--------------- \n ---------------------------------- \n" + textsJoined)
+// console.log(textsJoined)
 
 
 
