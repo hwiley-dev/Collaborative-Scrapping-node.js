@@ -28,6 +28,11 @@ async function scrapeProduct(url) {
 
   console.log({ imgURL, title, price })
 
+
+
+
+
+  
   browser.close();
 
   
